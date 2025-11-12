@@ -486,13 +486,19 @@ section:not(:last-of-type)::after {
   transform: scale(1.05);
 }
 
+/* Inline logo for mobile under text */
+/* Removed inline logo block; using header logo repositioning on mobile */
+
 /* Content layout */
 .about-content {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-start;
-  gap: 80px;
-  max-width: 1200px;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+  max-width: none;
+  padding-right: 140px;
+  padding-left: 140px;
   margin: 0 auto 80px auto;
   flex-wrap: wrap;
   position: relative;
@@ -501,16 +507,15 @@ section:not(:last-of-type)::after {
 
 /* Text section */
 .about-text {
-  flex: none;
-  width: 50%;
+  flex: 1 1 600px;
   max-width: none;
   min-width: 300px;
   text-align: left;
   opacity: 0;
   transform: translateX(-80px);
   transition: all 0.8s ease-out;
-  margin-right: auto;
-  padding-right: 30px;
+  margin: 0;
+  padding: 0;
 }
 
 .about-text.show {
@@ -528,30 +533,40 @@ section:not(:last-of-type)::after {
 
 /* Team Images Container */
 .about-images {
-  position: absolute;
-  right: 0;
-  top: 0;
+  flex: 1 1 420px;
+  min-width: 280px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
   width: 100%;
-  height: 600px;
+  height: auto;
+}
+
+/* People container items */
+.person {
+  flex: 0 1 280px;
+  text-align: center;
 }
 
 /* Filip's image */
 .person:first-child {
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  left: calc(50% + 40px);
+  left: calc(50% + 40px); */
   width: 280px;
   text-align: center;
 }
 
 /* Stepan's image */
-.person:last-child {
+/* .person:last-child {
   position: absolute;
   top: 0;
   left: calc(50% + 360px);
   width: 280px;
   text-align: center;
-}
+} */
 
 /* Image styling */
 .person-img {
@@ -1040,6 +1055,19 @@ footer {
 
 /* Tablets (1024px and below) */
 @media (max-width: 1024px) {
+  /* Stack About header title and logo on tablets */
+  .about-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .company-logo {
+    margin-left: 0;
+    width: 150px;
+  }
   nav {
     width: 95%;
     max-width: 95%;
@@ -1079,20 +1107,19 @@ footer {
 
   .about-content {
     gap: 40px;
+    padding-left: 140px;
   }
 
   .about-text {
-    width: 45%;
-    padding-right: 20px;
+    flex: 1 1 520px;
+    padding-right: 0;
   }
 
   .person:first-child {
-    left: calc(50% + 20px);
     width: 250px;
   }
 
   .person:last-child {
-    left: calc(50% + 290px);
     width: 250px;
   }
 
@@ -1200,12 +1227,14 @@ footer {
   .company-logo {
     width: 120px;
     margin-left: 0;
+    /* keep visible on small screens so it sits under the header */
   }
 
   .about-content {
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     text-align: center;
+    padding: 0 15px;
   }
 
   .about-text {
@@ -1215,7 +1244,10 @@ footer {
     position: relative;
     transform: none !important;
     opacity: 1 !important;
+    flex: 1 1 100%;
   }
+
+  /* Inline logo removed; header logo stacks below the title */
 
   .about-text p {
     font-size: 1.1rem;
@@ -1230,7 +1262,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
+    flex: 1 1 100%;
   }
 
   .person {
